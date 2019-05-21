@@ -19,8 +19,10 @@ class HomePage extends StatelessWidget {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _swipeCards(),
+            _footer(context),
           ],
         ),
       ),
@@ -37,12 +39,32 @@ class HomePage extends StatelessWidget {
             );
           } else {
             return Container(
-              height: 400.0,
-              child: Center(
-                child: CircularProgressIndicator(),
-              )
-            );
+                height: 400.0,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ));
           }
         });
+  }
+
+  Widget _footer(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Populares',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+          FutureBuilder(
+              future: pelicuclasProvider.getPopulares(),
+              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                snapshot.data?.forEach((p) => print(p.title));
+
+                return Container();
+              })
+        ],
+      ),
+    );
   }
 }
