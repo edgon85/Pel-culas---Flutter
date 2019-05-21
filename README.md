@@ -6,3 +6,5 @@ A new Flutter application Películas
 
 [2 -  Widget personalizado - CardSwiper](../../tree/cb8e49ca3a8c9d6438208a79fc70bde0629111af/)
 
+[3 - Modelo de película](../../tree/5994d5af0b108a7d4e0222feedc90a31fb6e9afe/)
+
