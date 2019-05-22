@@ -24,3 +24,5 @@ A new Flutter application Películas
 
 [11 - Pasar argumentos de una activity a otra usando el pushNamed](../../tree/58bbee4224781e210d109e81a22e21a6e2786b54/)
 
+[12 - Diseño del activity de detalle](../../tree/484c306665452efa4187766c1066602245485606/)
+
