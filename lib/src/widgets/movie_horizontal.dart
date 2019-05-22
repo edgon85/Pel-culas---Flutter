@@ -3,18 +3,30 @@ import 'package:peliculas/src/models/pelicula_model.dart';
 
 class MovieHorizontal extends StatelessWidget {
   final List<Pelicula> peliculas;
+  final Function siguientePagina;
 
-  const MovieHorizontal({@required this.peliculas});
+  MovieHorizontal({@required this.peliculas, @required this.siguientePagina});
+
+  final _pageController =
+      new PageController(initialPage: 1, viewportFraction: 0.3);
 
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
 
+    // TODO: validar si llega al final de la página cargar la siguiente página
+    _pageController.addListener(() {
+      if (_pageController.position.pixels >=
+          _pageController.position.maxScrollExtent - 200) {
+        siguientePagina(); // cargar la siguiente pagina
+      }
+    });
+
     return Container(
       height: _screenSize.height * 0.3,
       child: PageView(
         pageSnapping: false,
-        controller: PageController(initialPage: 1, viewportFraction: 0.3),
+        controller: _pageController,
         children: _tarjetas(context),
       ),
     );
