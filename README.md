@@ -14,4 +14,4 @@ A new Flutter application Películas
 
 [6 - Obtener películas populares](../../tree/b4e391ae4f2be7d16850f8d94ce495393ff50842/)
 
- 
+[7 - Widget personalizado - Horizontal PageView](../../tree/3bd0a7fb62563418c991cd77a40f401dc771de30/)
