@@ -26,3 +26,5 @@ A new Flutter application Películas
 
 [12 - Diseño del activity de detalle](../../tree/484c306665452efa4187766c1066602245485606/)
 
+[13 - Modelo para manejar los actores de la película](../../tree/3e835662fc2ffb7dd8443a35ba612040d28e040a/)
+
