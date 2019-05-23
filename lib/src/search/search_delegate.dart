@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/src/models/pelicula_model.dart';
+import 'package:peliculas/src/providers/peliculas_provaiders.dart';
 
 class DataSearch extends SearchDelegate {
 
   String seleccion = '';
-
-  final peliculas = [
-    'Spiderman',
-    'Aquaman',
-    'Batman',
-    'Shazam!',
-    'Ironman',
-    'Capitan America',
-    'Superman',
-    'Ironman 2',
-    'Ironman 3'
-  ];
-
-  final peliculasRecientes = ['Spiderman', 'Capitan America'];
+  final peliculasProvider = new PeliculasProviders();
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -60,23 +49,44 @@ class DataSearch extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions, las sugerencias que aparecen cuando la persona escribe
 
-    final listaSugerida = (query.isEmpty)
-        ? peliculasRecientes
-        : peliculas
-            .where((p) => p.toLowerCase().startsWith(query.toLowerCase()))
-            .toList();
+    if(query.isEmpty){
+      return Container();
+    } 
+    
+    return FutureBuilder(
+      future: peliculasProvider.buscarpelicula(query),
+      builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot){
 
-    return ListView.builder(
-        itemCount: listaSugerida.length,
-        itemBuilder: (context, i) {
-          return ListTile(
-            leading: Icon(Icons.movie),
-            title: Text(listaSugerida[i]),
-            onTap: () {
-              seleccion = listaSugerida[i];
-              showResults(context);
-            },
+        if(snapshot.hasData){
+
+          final peliculas = snapshot.data;
+
+          return ListView(
+            children: peliculas.map((pelicula){
+              return ListTile(
+                leading: FadeInImage(
+                    placeholder: AssetImage('assets/images/no-image.jpg'),
+                    image: NetworkImage(pelicula.getPosterImg()),
+                  fit: BoxFit.cover,
+                  width: 50.0,
+                ),
+                title: Text(pelicula.title),
+                subtitle: Text(pelicula.originalTitle),
+
+                onTap: (){
+                  close(context, null);
+                  pelicula.uniqueId = '';
+                  Navigator.pushNamed(context, 'detalle', arguments: pelicula, );
+                },
+              );
+            }).toList(),
           );
-        });
+        }else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }
+    );
   }
 }
