@@ -34,3 +34,7 @@ A new Flutter application Películas
 
 [16 - Hero animation](../../tree/629f43c6def6dc6f7dc14fd34024671a0aee8ecf/)
 
+[17 - Hero animation en las tarjetas principales](../../tree/d8e8e3fecf693a92237200cc0e00b5550523a77e/)
+
+
+
