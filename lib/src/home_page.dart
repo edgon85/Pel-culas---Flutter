@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:peliculas/src/providers/peliculas_provaiders.dart';
+import 'package:peliculas/src/providers/peliculas_providers.dart';
 import 'package:peliculas/src/search/search_delegate.dart';
 
 import 'package:peliculas/src/widgets/card_swiper_widget.dart';
